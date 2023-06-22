@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="./resources/ol.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/Viglino/ol-ext/master/dist/ol-ext.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/ol-layerswitcher@4.1.1/dist/ol-layerswitcher.css" />
+        <link rel="stylesheet" href="resources/fontawesome-all.min.css">
+<style>
+.search-layer {
+  top: 65px;
+  left: .5em;
+}
+.ol-touch .search-layer {
+  top: 80px;
+}
+</style>
+        <style>
+        html, body {
+            background-color: #ffffff;
+        }
+        .ol-control button {
+            background-color: #f8f8f8 !important;
+            color: #000000 !important;
+            border-radius: 0px !important;
+        }
+        .ol-zoom, .geolocate, .gcd-gl-control .ol-control {
+            background-color: rgba(255,255,255,.4) !important;
+            padding: 3px !important;
+        }
+        .ol-scale-line {
+            background: none !important;
+        }
+        .ol-scale-line-inner {
+            border: 2px solid #f8f8f8 !important;
+            border-top: none !important;
+            background: rgba(255, 255, 255, 0.5) !important;
+            color: black !important;
+        }
+        </style>
+        <style>
+            #map {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+            #controls-container {
+                position: absolute;
+                top: 50px;
+                left: 20px;
+                z-index: 1000;
+              }
+
+              #controls-container_1 {
+                position: absolute;
+                top: 70px;
+                left: 20px;
+                z-index: 1000;
+              }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+            <div id="popup" class="ol-popup">
+                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                <div id="popup-content"></div>
+            </div>
+        </div>
+        <!-- Slider for Transparency Control -->
+        <div style="position: absolute; top: 10px; left: 10px;">
+            <input type="range" id="value-slider" min="0" max="10" step="1" value="0" />
+            <label for="value-slider">Anomaly threshold</label>
+        </div>
+        
+        <div id="controls-container">
+            <label for="time-select">Select Anomaly Time:</label>
+            <select id="time-select">
+              <option value="std_dev_w_mean_18_19">Anomaly 18-19</option>
+              <option value="std_dev_w_mean_19_20">Anomaly 19-20</option>
+              <option value="std_dev_w_mean_20_21">Anomaly 20-21</option>
+              <option value="std_dev_w_mean_21_22">Anomaly_21-22</option>
+              <option value="std_dev_w_mean_22_23">Anomaly 22-23</option>
+            </select>
+          </div>
+
+
+          <div id="controls-container_1">
+            <label for="temp-select">Select Temperature Time:</label>
+            <select id="temp-select">
+              <option value="w_mean_18_19">Temperature 18-19</option>
+              <option value="w_mean_19_20">Temperature 19-20</option>
+              <option value="w_mean_20_21">Temperature 20-21</option>
+              <option value="w_mean_21_22">Temperature 21-22</option>
+              <option value="w_mean_22_23">Temperature 22-23</option>
+            </select>
+          </div>
+          
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) { 
+                // DOM is ready
+              
+                var timeSelect = document.getElementById('time-select');
+                var tempSelect = document.getElementById('temp-select');
+              
+                timeSelect.addEventListener('change', function(e) {
+                  // Update tempSelect to match the selected index of timeSelect
+                  tempSelect.selectedIndex = timeSelect.selectedIndex;
+                });
+              
+                tempSelect.addEventListener('change', function(e) {
+                  // Update timeSelect to match the selected index of tempSelect
+                  timeSelect.selectedIndex = tempSelect.selectedIndex;
+                });
+              
+              });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ol-ext/dist/ol-ext.min.js"></script>
+        <script src="https://unpkg.com/ol-layerswitcher@4.1.1"></script>
+        <script src="resources/polyfills.js"></script>
+        <script src="./resources/functions.js"></script>
+        <script src="./resources/ol.js"></script>
+        <script src="./resources/ol-layerswitcher.js"></script>
+        <script src="layers/hexagons_std_dev_0.js"></script>
+        <script src="layers/hexagons_std_dev_1.js"></script>
+        <script src="styles/hexagons_std_dev_0_style.js"></script>
+        <script src="styles/hexagons_std_dev_1_style.js"></script>
+        <script src="./layers/layers.js" type="text/javascript"></script> 
+        <script src="./resources/Autolinker.min.js"></script>
+
+    </body>
+</html>
